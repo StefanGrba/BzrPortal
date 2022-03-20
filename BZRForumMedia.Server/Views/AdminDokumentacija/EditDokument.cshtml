@@ -1,0 +1,82 @@
+﻿@model BZRForumMedia.Server.ViewModels.DokumentViewModel
+
+@{
+    ViewData["Title"] = "EditDokument";
+    int idDokumenta = ViewBag.Id;
+    var tipovi = ViewBag.Tipovi;
+}
+<div class="container">
+
+
+    <h1>Izmeni dokument</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="EditDokument" asp-controller="AdminDokumentacija" asp-route-id="@idDokumenta">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Naslov" class="control-label"></label>
+                    <input asp-for="Naslov" class="form-control" />
+                    <span asp-validation-for="Naslov" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Autor" class="control-label"></label>
+                    <input asp-for="Autor" class="form-control" />
+                    <span asp-validation-for="Autor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumObjavljivanja" class="control-label"></label>
+                    <input asp-for="DatumObjavljivanja" class="form-control" />
+                    <span asp-validation-for="DatumObjavljivanja" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdTipa" class="control-label"></label>
+                    <select asp-for="IdTipa" value="IdTipa" class="form-control">
+                   
+                        @foreach(var tip in tipovi)
+            {
+                var isSelected = tip.Id == Model.IdTipa ? "selected" : "";
+                            if(isSelected == "selected")
+                {
+                    <option value="@tip.Id" selected = "selected">@tip.ImeTipa</option>
+                }
+                else
+                {
+                    <option value="@tip.Id">@tip.ImeTipa</option>
+                }
+                
+            }
+                    </select>
+                    <span asp-validation-for="DatumObjavljivanja" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width:100%">
+                    <label asp-for="Tekst" class="control-label"></label>
+                    <textarea asp-for="Tekst" style="width:100%">
+              @Model.Tekst
+                </textarea>
+                    <script>
+                        tinymce.init({
+                            selector: 'textarea',
+                            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                            toolbar_mode: 'floating',
+                        });
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Napomena" class="control-label"></label>
+                    <input asp-for="Napomena" class="form-control" />
+                    <span asp-validation-for="Napomena" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary" />
+                </div>
+            </form>
+</div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Nazad na listu</a>
+    </div>
+
+</div>

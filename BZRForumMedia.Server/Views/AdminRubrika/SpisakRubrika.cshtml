@@ -1,0 +1,33 @@
+﻿@using BZRForumMedia.Server.Models;
+@model IEnumerable<Rubrika>
+    <div class="container">
+        <h1>Spisak rubrika:</h1>
+
+        <p>
+            <a asp-action="CreateRubrika">Dodaj rubriku</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Naslov")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Naziv)
+                        </td>
+                        <td>
+                            <a asp-action="EditRubrika" asp-controller="AdminRubrika" asp-route-id="@item.Id">Izmeni</a> |
+                            <a asp-action="DeleteRubrika" asp-controller="AdminRubrika" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da zelite da izbrišete @item.Naziv')">Izbriši</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<AppUser>;
+
+<div class="container">
+    <h1>Svi korisnici</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Ime")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Prezime")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Broj telefona")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Naziv kompanije")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Naziv radnog mesta")
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prezime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojTelefona)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NazivKompanije)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NazivRadnogMesta)
+                    </td>
+                   
+                </tr>
+                }
+            </tbody>
+        </table>
+ </div>

@@ -1,0 +1,58 @@
+﻿@model BZRForumMedia.Server.ViewModels.ClanakViewModel
+
+@{
+    ViewData["Title"] = "Kreiraj članak";
+}
+<div class="container">
+    <h1>Kreiraj članak</h1>
+
+    <h4>Popunite polja</h4>
+    @if (@ViewBag.Msg != null)
+    {
+        <h4 class="text-success">@ViewBag.Msg</h4>
+    }
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="CreateClanak">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Naslov" class="control-label"></label>
+                    <input asp-for="Naslov" class="form-control" />
+                    <span asp-validation-for="Naslov" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Autor" class="control-label"></label>
+                    <input asp-for="Autor" class="form-control" />
+                    <span asp-validation-for="Autor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumObjavljivanja" class="control-label"></label>
+                    <input asp-for="DatumObjavljivanja" class="form-control" />
+                    <span asp-validation-for="DatumObjavljivanja" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="width:100%">
+                    <label asp-for="TekstClanka" class="control-label"></label>
+                    <textarea asp-for="TekstClanka" style="width:100%">
+             
+                </textarea>
+                    <script>
+                        tinymce.init({
+                            selector: 'textarea',
+                            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                            toolbar_mode: 'floating',
+                        });
+                    </script>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Kreiraj" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Nazad na listu</a>
+    </div>
+
+</div>

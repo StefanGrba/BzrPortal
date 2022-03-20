@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.Vest>
+@{
+}
+<!-- inner page banner -->
+<div id="inner_banner" class="section inner_banner_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="title-holder">
+                        <div class="title-holder-cell text-left">
+                            <h1 class="page-title">Vesti</h1>
+                            <ol class="breadcrumb">
+                                <li><a asp-action="Index" asp-controller="Home">Početna</a></li>
+                                <li class="active">Vesti</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end inner page banner -->
+<!-- section -->
+<div class="section padding_layout_1 service_list">
+    <div class="container">
+        <div class="row">
+            @foreach(var vest in Model)
+            {
+                <div class="col-md-4 service_blog margin_bottom_50">
+                    <div class="full">
+                        <div class="service_img"> <img class="img-responsive" src="@vest.PutanjaDoSlike" alt="@vest.Naslov" /> </div>
+                        <div class="service_cont">
+                            <h3 class="service_head">@vest.Naslov</h3>
+                            @Html.Raw(vest.Sazetak)
+                            <div class="bt_cont"> <a class="btn sqaure_bt" asp-action="JednaVest" asp-controller="KorisnikVesti" asp-route-id="@vest.Id">Vidi vest</a> </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- end section -->

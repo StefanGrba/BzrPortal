@@ -1,0 +1,146 @@
+﻿@model BZRForumMedia.Server.ViewModels.PropisViewModel
+
+@{
+    ViewData["Title"] = "Detalji o propisu";
+    int idPropis = ViewBag.Id;
+}
+<div class="container">
+    <h1>Sve informacije o propisu</h1>
+
+    <div>
+        <h4>Propis</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Naslov)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Naslov)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.GlasiloIDatum)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.GlasiloIDatum)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TekstPropisa)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IdVrstaPropis)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Donosilac)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Donosilac)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NivoVazenja)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NivoVazenja)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumStupanjaNaSnaguPropisa)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumStupanjaNaSnaguPropisa)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumPrestankaVerzije)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumPrestankaVerzije)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumObjavljivanjeVerzije)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumObjavljivanjeVerzije)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumObjavljivanjaOsnovnogTeksta)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumObjavljivanjaOsnovnogTeksta)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumStupanjaNaSnaguMedjunarodnogUgovora)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumStupanjaNaSnaguMedjunarodnogUgovora)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumStupanjaNaSnaguOsnovnogTeksta)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumStupanjaNaSnaguOsnovnogTeksta)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumPrestankaVazenjaPropisa)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumPrestankaVazenjaPropisa)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumPocetkaPrimene)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumPocetkaPrimene)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PravniOsnovZaDonosenjePropisa)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PravniOsnovZaDonosenjePropisa)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NormaOsnovaZaDonosenje)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NormaOsnovaZaDonosenje)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PropisKojiJePrestaoDaVazi)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PropisKojiJePrestaoDaVazi)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NormaOsnovaZaPrestanakVazenja)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NormaOsnovaZaPrestanakVazenja)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DatumPrestankaVazenjaPravnogPrethodnika)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DatumPrestankaVazenjaPravnogPrethodnika)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.IstorijskaVerzijaPropisa)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.IstorijskaVerzijaPropisa)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Napomena)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Napomena)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NapomenaGlasnika)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NapomenaGlasnika)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @Html.ActionLink("Izmeni", "EditPropis", new { id = idPropis }) |
+        <a asp-action="ListaPropisa">Nazad na listu</a>
+    </div>
+</div>

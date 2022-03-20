@@ -1,0 +1,9 @@
+﻿@model List<BZRForumMedia.Server.Models.VrstaPropisa>
+<a>Propisi</a>
+<ul>
+    @foreach (var vrsta in Model)
+    {
+        <li><a asp-action="ListaPropisa" asp-controller="KorisnikPropis" asp-route-id="@vrsta.Id">@vrsta.Naziv</a></li>
+    }
+</ul>
+

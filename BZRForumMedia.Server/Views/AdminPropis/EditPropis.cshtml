@@ -1,0 +1,151 @@
+﻿@model BZRForumMedia.Server.ViewModels.PropisViewModel
+
+@{
+    ViewData["Title"] = "Izmeni propis";
+    var vrstePropisa = ViewBag.VrstePropisa;
+}
+<div class="container">
+    <h1>Izmeni propis</h1>
+
+    <h4>Popunite polja</h4>
+    @if (@ViewBag.Msg != null)
+    {
+        <h4 class="text-success">@ViewBag.Msg</h4>
+    }
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditPropis">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Naslov" class="control-label"></label>
+                    <input asp-for="Naslov" class="form-control" />
+                    <span asp-validation-for="Naslov" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GlasiloIDatum" class="control-label"></label>
+                    <input asp-for="GlasiloIDatum" class="form-control" />
+                    <span asp-validation-for="GlasiloIDatum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdVrstaPropis" class="control-label"></label>
+                    <select asp-for="IdVrstaPropis" class="form-control">
+                        @foreach(var vrsta in vrstePropisa)
+                        {
+                            var isSelected = vrsta.Id == Model.IdVrstaPropis ? "selected" : "";
+                            if(isSelected == "selected")
+                {
+                    <option value="@vrsta.Id" selected>@vrsta.Naziv</option>
+                }
+                else
+                {
+                    <option value="@vrsta.Id">@vrsta.Naziv</option>
+                }
+                        }
+                    </select>
+                    <span asp-validation-for="IdVrstaPropis" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Donosilac" class="control-label"></label>
+                    <input asp-for="Donosilac" class="form-control" />
+                    <span asp-validation-for="Donosilac" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NivoVazenja" class="control-label"></label>
+                    <input asp-for="NivoVazenja" class="form-control" />
+                    <span asp-validation-for="NivoVazenja" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumStupanjaNaSnaguPropisa" class="control-label"></label>
+                    <input asp-for="DatumStupanjaNaSnaguPropisa" class="form-control" />
+                    <span asp-validation-for="DatumStupanjaNaSnaguPropisa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumPrestankaVerzije" class="control-label"></label>
+                    <input asp-for="DatumPrestankaVerzije" class="form-control" />
+                    <span asp-validation-for="DatumPrestankaVerzije" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumObjavljivanjeVerzije" class="control-label"></label>
+                    <input asp-for="DatumObjavljivanjeVerzije" class="form-control" />
+                    <span asp-validation-for="DatumObjavljivanjeVerzije" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumObjavljivanjaOsnovnogTeksta" class="control-label"></label>
+                    <input asp-for="DatumObjavljivanjaOsnovnogTeksta" class="form-control" />
+                    <span asp-validation-for="DatumObjavljivanjaOsnovnogTeksta" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumStupanjaNaSnaguMedjunarodnogUgovora" class="control-label"></label>
+                    <input asp-for="DatumStupanjaNaSnaguMedjunarodnogUgovora" class="form-control" />
+                    <span asp-validation-for="DatumStupanjaNaSnaguMedjunarodnogUgovora" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumStupanjaNaSnaguOsnovnogTeksta" class="control-label"></label>
+                    <input asp-for="DatumStupanjaNaSnaguOsnovnogTeksta" class="form-control" />
+                    <span asp-validation-for="DatumStupanjaNaSnaguOsnovnogTeksta" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumPrestankaVazenjaPropisa" class="control-label"></label>
+                    <input asp-for="DatumPrestankaVazenjaPropisa" class="form-control" />
+                    <span asp-validation-for="DatumPrestankaVazenjaPropisa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumPocetkaPrimene" class="control-label"></label>
+                    <input asp-for="DatumPocetkaPrimene" class="form-control" />
+                    <span asp-validation-for="DatumPocetkaPrimene" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PravniOsnovZaDonosenjePropisa" class="control-label"></label>
+                    <input asp-for="PravniOsnovZaDonosenjePropisa" class="form-control" />
+                    <span asp-validation-for="PravniOsnovZaDonosenjePropisa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NormaOsnovaZaDonosenje" class="control-label"></label>
+                    <input asp-for="NormaOsnovaZaDonosenje" class="form-control" />
+                    <span asp-validation-for="NormaOsnovaZaDonosenje" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PropisKojiJePrestaoDaVazi" class="control-label"></label>
+                    <input asp-for="PropisKojiJePrestaoDaVazi" class="form-control" />
+                    <span asp-validation-for="PropisKojiJePrestaoDaVazi" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NormaOsnovaZaPrestanakVazenja" class="control-label"></label>
+                    <input asp-for="NormaOsnovaZaPrestanakVazenja" class="form-control" />
+                    <span asp-validation-for="NormaOsnovaZaPrestanakVazenja" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DatumPrestankaVazenjaPravnogPrethodnika" class="control-label"></label>
+                    <input asp-for="DatumPrestankaVazenjaPravnogPrethodnika" class="form-control" />
+                    <span asp-validation-for="DatumPrestankaVazenjaPravnogPrethodnika" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IstorijskaVerzijaPropisa" class="control-label"></label>
+                    <input asp-for="IstorijskaVerzijaPropisa" class="form-control" />
+                    <span asp-validation-for="IstorijskaVerzijaPropisa" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Napomena" class="control-label"></label>
+                    <input asp-for="Napomena" class="form-control" />
+                    <span asp-validation-for="Napomena" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NapomenaGlasnika" class="control-label"></label>
+                    <input asp-for="NapomenaGlasnika" class="form-control" />
+                    <span asp-validation-for="NapomenaGlasnika" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Sačuvaj" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="ListaPropisa">Nazad na listu</a>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

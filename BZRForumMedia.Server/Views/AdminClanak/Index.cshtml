@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.Clanak>
+
+@{
+    ViewData["Title"] = "Lista članaka";
+}
+<div class="container">
+    <h1>Lista članaka</h1>
+
+    <p>
+        <a asp-action="CreateClanak">Kreiraj novi članak</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naslov)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditClanak", new { id = item.Id }) |
+                        @Html.ActionLink("Ceo tekst", "DetailsClanak", new { id = item.Id }) |
+                        <a asp-action="DeleteClanak" asp-controller="AdminClanak" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da želite da izbrišete @item.Naslov')">Briši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

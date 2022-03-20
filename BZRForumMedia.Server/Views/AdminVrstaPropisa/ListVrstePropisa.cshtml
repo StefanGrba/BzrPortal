@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.VrstaPropisa>
+
+@{
+    ViewData["Title"] = "Lista vrsta propsia";
+}
+<div class="container">
+    <h1>Lista Vrsta Propisa</h1>
+
+    <p>
+        <a asp-action="CreateVrstaPropisa">Kreiraj novu vrstu</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Naziv)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naziv)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditVrstaPropisa", new { id = item.Id }) |
+
+                        <a asp-controller="AdminVrstaPropisa" asp-action="DeleteVrstaPropisa" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da želite da izbrišete @item.Naziv')">Izbriši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.Dokumentacija>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h1>Lista dokumenata</h1>
+
+    <p>
+        <a asp-action="CreateDokument">Kreiraj novi</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Autor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DatumObjavljivanja)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naslov)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Autor)
+                    </td>
+                    <td>
+                        @Html.Display("Datum objavljivanja")
+                    </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditDokument", new {  id=item.Id }) |
+                        @Html.ActionLink("Detalji", "DetailsDokument", new {  id=item.Id  }) |
+                       <a asp-controller="AdminDokumentacija" asp-action="DeleteDokument" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da želite da obrišete @item.Naslov')"> Briši </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

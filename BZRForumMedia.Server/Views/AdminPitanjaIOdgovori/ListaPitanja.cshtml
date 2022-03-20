@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.PitanjaIOdgovori>
+
+@{
+    ViewData["Title"] = "Lista pitanja";
+}
+<div class="container">
+    <h1>Lista pitanja</h1>
+
+    <p>
+        <a asp-action="CreatePitanja">Kreiraj novo pitanje</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Pitanje)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pitanje)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditPitanja", new { id = item.Id }) |
+                        @Html.ActionLink("Detalji", "DetailsPitanja", new { id = item.Id }) |
+                        <a asp-controller="AdminPitanjaIOdgovori" asp-action="DeletePitanja" asp-route-id="@item.Id" onclick="return confirm('jeste li sigurni da zelite da izbrisete @item.Pitanje')">Izbriši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

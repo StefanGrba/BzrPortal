@@ -1,0 +1,331 @@
+﻿@model List<BZRForumMedia.Server.Models.Vest>
+@{
+    ViewData["Title"] = "Naslovna strana";
+    int brojacVesti = 0;
+}
+
+<style>
+    .brand_list li {
+        float: left;
+        width: 15.6% !important;
+        text-align: center;
+        background: #f6f6f6;
+        padding: 3px 0;
+        margin: 0 .5%;
+        border: solid #eee 5px;
+        padding-top: 4px !important;
+    }
+</style>
+<!-- section -->
+<div id="inner_banner" class="section inner_banner_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="title-holder">
+                        <div class="title-holder-cell text-left">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="full">
+                                        <div style="padding-top: 30px!important" class="main_heading text_align_left">
+                                            <h2>Najnovije vesti</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section padding_layout_1">
+    <div class="container">
+       
+        <div class="row">
+            @if (Model.Count != 0)
+            {
+                @foreach (var vest in Model)
+                {
+                    brojacVesti += 1;
+                    <div class="col-md-4">
+                        <div class="full blog_colum" style="padding-bottom: 40px;">
+                            <div class="blog_feature_img">
+                                <a asp-controller="KorisnikVesti" asp-action="JednaVest" asp-route-id="@vest.Id">
+                                    <img src="@vest.PutanjaDoSlike" alt="@vest.Naslov" />
+                                </a>
+                            </div>
+                            <div class="post_time">
+                                <p><i class="fa fa-clock-o"></i>@vest.DatumObjavljivanja</p>
+                            </div>
+                            <div class="blog_feature_head">
+                                <h4>@vest.Naslov</h4>
+                            </div>
+                            <div class="blog_feature_cont">
+                                <a asp-controller="KorisnikVesti" asp-action="JednaVest" asp-route-id="@vest.Id"> @Html.Raw(@vest.Sazetak) </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    if (brojacVesti == 6)
+                    {
+                        break;
+                    }
+                }
+
+
+            }
+
+
+        </div>
+    </div>
+</div>
+<!-- end section -->
+<!-- section -->
+@if (User.IsInRole("Super korisnik"))
+{
+    <div class="section padding_layout_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <div style="padding-top: 30px!important" class="main_heading text_align_left">
+                            <h3>Pristupite online izdanju<br />Priručnika Bezbednost i zdravlje na radu u praksi:</h3>
+                       <a  href="~/pdf/BZR flipping book, septembar 2021.pdf" title="Zastita o pozaru u praksi"  target="_blank" alt="#"><img src="images/it_service/prirucnik.png"title="Priručnik bezbednost i zdravlje na radu u praksi" width="30%" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- end section -->
+<!-- section -->
+<div class="section padding_layout_1 testmonial_section white_fonts">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="main_heading text_align_left">
+                        <h2 style="text-transform: none;">Šta BZR-PORTAL pruža?</h2>
+                        <p class="large">Glavne prednosti:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="full">
+                    <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <li data-target="#testimonial_slider" data-slide-to="0" class="active"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="1"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="2"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="3"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="4"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="5"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="6"></li>
+                            <li data-target="#testimonial_slider" data-slide-to="7"></li>
+                        </ul>
+                        <!-- The slideshow -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+                                        PRAVNA REGULATIVA - Dnevno ažurni tekstovi svih propisa iz oblasti bezbednosti i zdravlja na radu i drugih
+                                        srodnih oblasti.
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/cekicbeli.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Pravna regulativa</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+                                        OBAVEZNA DOKUMENTACIJA - Modeli i primeri dokumenata, evidencija, izveštaja, prijava, uputstva i dr. Portal
+                                        sadrži i aktuelnu sudsku praksu i službena mišljenja nadlježnih organa.
+                                        <br />
+
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/document.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Obavezna dokumentacija</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+                                        AKTUELNOSTI - Vesti i novosti iz BZR sveta od značaja za Vaše poslovanje.
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/globus.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Aktuelnosti</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+
+                                        STRUČNI SAVETI I INSTRUKCIJE - Autorski tekstovi sa strućnim savetima kako pravilno primeniti propise u praksi.
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/instructions.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Stručni saveti i instrukcije</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+                                        ODGOVORI NA PITANJA - Najčešća pitanja iz svakodnevne prakse korisnika.
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/doubts-button.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Odgovori na pitanja</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+                                        VIDEO FORMA - Odabrani snimci seminara i drugi edukativni video materijali.
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/play.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Video forma</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="testimonial-container">
+                                    <div class="testimonial-content">
+                                        DNEVNE KONSULTACIJE - mejl/čet/telefon. Postavite nam pitanje i rešite problem uz pomoć našeg stručnog tima.
+                                        <br />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="testimonial-photo"> <img src="images/it_service/operator.png" class="img-responsive" alt="#" width="150" height="150"> </div>
+                                    <div class="testimonial-meta">
+                                        <h4>Dnevne konsultacije</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="full"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*end section
+    section*@
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="contact_us_section">
+                        <div class="call_icon"> <img src="images/it_service/phone_icon.png" alt="#" /> </div>
+                        <div class="inner_cont">
+                            <h2>Postanite naš korisnik</h2>
+                            <p>
+                                Kontaktirate nas:
+                                <br />
+                                Telefon: +381 11 329 0922
+                                <br />
+                                Telefon: +381 11 630 8322<br />
+                                Telefon: +381 11 329 2963<br />
+
+
+                                Email: bzrportal@forum-media.rs.
+                            </p>
+                        </div>
+                        <div class="button_Section_cont"> <a class="btn dark_gray_bt" href="it_contact.html">Kontaktirajte nas</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*end section
+    section*@
+<div class="section padding_layout_1" style="padding: 50px 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <ul class="brand_list">
+
+                        <li><a href="https://forum-media.rs/proizvod/bezbednost-i-zdravlje-na-radu/zastita-od-pozara-u-praksi/" title="Zastita o pozaru u praksi" target="_blank" alt="#"><img src="images/it_service/duleslika7.jpg" width="100%" /></a></li>
+                        <li><a href="https://forum-media.rs/proizvod/javne-nabavke/prirucnik-o-javnim-nabavkama/" title="Prirucnik o javnim nabavkama" target="_blank" alt="#"><img src="images/it_service/duleslika4.jpg" width="100%" /></a></li>
+                        <!-- <li><img src="images/it_service/duleslika3.jpg" href="https://forum-media.rs/proizvod/menadzment-i-administracija/govori-i-pisana-komunikacija-za-svaku-poslovnu-priliku-menadzment/" title="Govori i pisana komunikacija" target="_blank" alt="#" /></li> -->
+                        <li><a href="https://forum-media.rs/proizvod/menadzment-i-administracija/obaveze-i-odgovornosti-direktora/" title="Obaveze i odgovornosti direktora" target="_blank" alt="#"><img src="images/it_service/duleslika2.jpg" width="100%" /></a></li>
+                        <li><a href="https://forum-media.rs/proizvod/zzs-i-upravljanje-otpadom/upravljanje-otpadom-zakon-i-praksa/" title="Upravljanje otpadom" target="_blank" alt="#"><img src="images/it_service/duleslika6.jpg" width="100%" /></a></li>
+                        <li><a href=" https://forum-media.rs/proizvod/radni-odnosi-i-hr-menadzment/radno-pravo-u-praksi/" title="Radno pravo u praksi" target="_blank" alt="#"><img src="images/it_service/duleslika5.jpg" width="100%" /></a></li>
+                        <li><a href="https://forum-media.rs/proizvod/bezbednost-i-zdravlje-na-radu/bezbednost-i-zdravlje-na-radu-u-praksi/" title="Bezbednost i zdravlje na radu" target="_blank" alt="#"><img src="images/it_service/duleslika1.jpg" width="100%" /></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*end section
+    Modal*@
+<div class="modal fade" id="search_bar" role="dialog">
+    <div class="modal-dialog">
+        Modal content
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 offset-lg-2 offset-md-2 offset-sm-2 col-xs-10 col-xs-offset-1">
+                        <div class="navbar-search">
+                            <form action="#" method="get" id="search-global-form" class="search-global">
+                                <input type="text" placeholder="Type to search" autocomplete="off" name="s" id="search" value="" class="search-global__input">
+                                <button class="search-global__btn"><i class="fa fa-search"></i></button>
+                                <div class="search-global__note">Begin typing your search above and press return to search.</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*End Model search bar*@

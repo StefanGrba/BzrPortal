@@ -1,0 +1,8 @@
+﻿@model List<BZRForumMedia.Server.Models.TipDokumentacije>
+<a>Dokumentacija</a>
+<ul>
+    @foreach (var tip in Model)
+    {
+        <li><a asp-action="ListaDokumenata" asp-controller="KorisnikDokumentacija" asp-route-id="@tip.Id">@tip.ImeTipa</a></li>
+    }
+</ul>

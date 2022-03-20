@@ -1,0 +1,22 @@
+﻿@model BZRForumMedia.Server.ViewModels.ClanakViewModel
+
+@{
+    ViewData["Title"] = "DetailsClanak";
+    int idClanka = ViewBag.Id;
+}
+<div class="container">
+    <h1>Sve o članku</h1>
+
+    <div class="col-md-12" style="text-align:center">
+        <h1>@Model.Naslov</h1>
+        @Html.Raw(Model.TekstClanka)
+
+
+    </div>
+    <p>@Model.DatumObjavljivanja</p>
+    <p>@Model.Autor</p>
+    <div>
+        @Html.ActionLink("Izmeni", "EditClanak", new { id = idClanka }) |
+        <a asp-action="Index">Nazad na listu</a>
+    </div>
+</div>

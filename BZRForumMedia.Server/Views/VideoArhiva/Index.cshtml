@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.Video>
+
+@{
+    ViewData["Title"] = "Lista video zapisa";
+}
+<div class="container">
+    <h1>Lista video zapisa</h1>
+
+    <p>
+        <a asp-action="Create">Kreiraj novi video</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </th>
+                <th>
+                    @Html.DisplayName("Putanja videa")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naslov)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VideoPath)
+                    </td>
+                    <td>
+                        <a asp-controller="VideoArhiva" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('jeste li sigurni da zelite da izbrisete @item.Naslov')">Izbriši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

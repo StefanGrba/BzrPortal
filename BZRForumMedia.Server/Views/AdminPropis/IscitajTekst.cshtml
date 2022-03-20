@@ -1,0 +1,19 @@
+﻿@model BZRForumMedia.Server.ViewModels.PropisViewModel
+
+@{
+    ViewData["Title"] = "IscitajTekst";
+    int idPropisa = ViewBag.Id;
+}
+<div class="container">
+    <h1>IscitajTekst</h1>
+
+    <div style="margin: 0 auto; text-align:center">
+        <h1>@Model.Naslov</h1>
+        <h4>@Model.GlasiloIDatum</h4>
+        @Html.Raw(Model.TekstPropisa);
+    </div>
+    <div>
+        @Html.ActionLink("Izmeni Tekst", "DodajTekst", new { id = idPropisa }) |
+        <a asp-action="ListaPropisa">Nazad na listu</a>
+    </div>
+</div>

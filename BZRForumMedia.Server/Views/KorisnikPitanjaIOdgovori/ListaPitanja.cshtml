@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.PitanjaIOdgovori>
+@{
+}
+<div id="inner_banner" class="section inner_banner_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="title-holder">
+                        <div class="title-holder-cell text-left">
+                            <h1 class="page-title">Pitanja i odgovori</h1>
+                            <ol class="breadcrumb">
+                                <li><a asp-controller="Home" asp-action="Index">Početna</a></li>
+                                <li class="active">Pitanja i odgovori</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end inner page banner -->
+<!-- section -->
+<div class="section padding_layout_1 it_service_policy">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="full">
+                          @foreach(var pitanje in Model)
+            {
+                            <div class="full margin_bottom_30">
+                                <div class="accordion border_circle">
+                                    <div class="bs-example">
+                                        <div class="panel-group" id="accordion">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <p class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-bar-chart" aria-hidden="true"></i> @pitanje.Naslov <i class="fa fa-angle-down"></i></a> </p>
+                                                </div>
+                                                <div id="collapseOne" class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            <b>Pitanje:</b> @pitanje.Pitanje <br><br />
+                                                            <b>Odgovor:</b> @pitanje.Odgovor"
+
+
+
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            }
+
+
+                            
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end section -->

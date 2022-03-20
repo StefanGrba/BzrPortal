@@ -1,0 +1,432 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BZRForumMedia.Server.Models
+@using BZRForumMedia.Server.Data;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<style>
+    .social_icon {
+        float: left;
+        margin: 6px 0 0 0!important;
+        padding-left:100px;
+    }
+    .cprt{
+        text-align:inherit!important;
+    }
+    .inner_banner_section {
+        background: url('../images/loaders/baner.png');
+
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Forum Media</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icons -->
+    <link rel="icon" href="~/images/fevicon/logoforum.png" type="image/gif" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- Site css -->
+    <link rel="stylesheet" href="~/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <!-- colors css -->
+    <link rel="stylesheet" href="~/css/colors1.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/custom.css" />
+    <!-- wow Animation css -->
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <!-- revolution slider css -->
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/settings.css" />
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/layers.css" />
+    <link rel="stylesheet" type="text/css" href="~/revolution/css/navigation.css" />
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+          <![endif]-->
+    <script src='https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=xe46bkxsfgb9chml6pydvikeemk7zn3csh4ysqbyl68d6a53'></script>
+
+</head>
+<body id="default_theme" class="it_service">
+    <div class="bg_load"> <img class="loader_animation" src="~/images/loaders/ocitaj2.gif" alt="#" /> </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header id="default_header" class="header_style_1">
+        <!-- header top -->
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="full">
+                            <div class="topbar-left">
+                                <ul class="list-inline">
+                                    <li> <span class="topbar-label"><i class="fa  fa-home"></i></span> <span class="topbar-hightlight">Kralja Milutina 46-48, Beograd 11000</span> </li>
+                                    <li> <span class="topbar-label"><i class="fa fa-envelope-o"></i></span> <span class="topbar-hightlight"><a href="mailto:bzr@forum-media.rs">bzr@forum-media.rs</a></span> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right_section_header_top">
+                        <div class="float-left">
+                            <div class="social_icon">
+                                <ul class="list-inline">
+
+                                    <li><a class="fa fa-facebook" href="https://www.facebook.com/FMBSrbija/" title="Facebook" target="_blank"></a></li>
+                                    <li><a class="fa fa-linkedin" href="https://www.linkedin.com/company/forum-media-srbija-do-o" title="LinkedIn" target="_blank"></a></li>
+                                    <li><a class="fa fa-instagram" href="https://www.instagram.com/forum_media_rs/" title="Instagram" target="_blank"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <div class="float-right">
+                                <div class="make_appo"> <a class="btn white_btn" asp-controller="Account" asp-action="Logout">Odjavi se</a> </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="float-right">
+                                <div class="make_appo"> <a class="btn white_btn" asp-controller="Account" asp-action="Login">Prijavi se</a> </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end header top -->
+        <!-- header bottom -->
+        <div class="header_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <!-- logo start -->
+                        <div class="logo"> <a asp-action="Index" asp-controller="Home"><img src="~/images/loaders/logoforum.png" alt="logo" /></a> </div>
+                        <!-- logo end -->
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <!-- menu start -->
+                        <div class="menu_side">
+                            <div id="navbar_menu">
+                                <ul class="first-ul">
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrator"))
+                                    {
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="Administration" asp-action="ListRoles">Administracija korisnika</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="AdminPropis" asp-action="ListaPropisa">Propisi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="AdminDokumentacija" asp-action="Index">Dokumenti</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="AdminTipDokumentacije" asp-action="Index">Tipovi dokumenata</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="AdminVest" asp-action="Index">Vesti</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="AdminClanak" asp-action="Index">Clanci</a>
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="AdminPitanjaIOdgovori" asp-action="ListaPitanja">Pitanja i odgovori</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-controller="VideoArhiva" asp-action="Index">Video</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @await Component.InvokeAsync("Propis")
+                                        </li>
+
+                                        <li>
+                                            @await Component.InvokeAsync("TipoviDokumentacije")
+                                        </li>
+                                        <li>
+                                            <a asp-controller="KorisnikVesti" asp-action="ListaVesti">Vesti</a>
+
+                                        </li>
+                                        <li>
+                                            <a asp-controller="KorisnikClanak" asp-action="ListaClanaka">Stručni tekstovi</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="KorisnikPitanjaIOdgovori" asp-action="ListaPitanja">Pitanja</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="VideoArhiva" asp-action="ListaVidea">Video</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Kontakt">Kontakt</a>
+                                        </li>
+
+                                    }
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- header bottom end -->
+    </header>
+   
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pull-right">
+        <div class="side_bar">
+            <div class="side_bar_blog" style="width: 70%">
+                <h4>PRETRAGA</h4>
+                <div class="side_bar_search">
+                    <form asp-controller="Home" asp-action="Search">
+                        <div class="input-group stylish-input-group">
+                                <input type="text" class="form-control" placeholder="Pretraga" name="id" />
+                                <span class="input-group-addon">
+                                    <!--<a href="C:\Users\Andjelija\source\repos\BZRForumMedia.Server\BZRForumMedia.Server\Views\Shared\_Layout.cshtml">C:\Users\Andjelija\source\repos\BZRForumMedia.Server\BZRForumMedia.Server\Views\Shared\_Layout.cshtml</a>-->
+                                    <button type="submit" class="form-control"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+
+
+
+    <footer class="footer_style_2">
+        <div class="container-fuild">
+            <div class="row">
+                <div class="map_section">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2373.4426059577495!2d20.46180923722594!3d44.800800522367325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a70090464d999%3A0x35ffce2a66a09d4f!2sKralja%20Milutina%2046%2C%20Beograd!5e0!3m2!1sen!2srs!4v1644167229373!5m2!1sen!2srs" height="800" style="border:0; margin-left: 10px;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="footer_blog">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="main-heading left_text">
+                                <h2>Bezbednost i zdravlje na radu</h2>
+                            </div>
+                            <p>Kompanija FORUM MEDIA GROUP, osnovana 1988. godine, se profilisala kao izdavač visokokvalitetnih informativnih i zabavnih proizvoda, kao i organizator stručnih obuka i razvojnih programa namenjenih pravnim i fizičkim licima. Članice kompanije FORUM MEDIA GROUP u svojoj ponudi imaju i širok spektar specijalnih tematskih publikacija, časopisa i izuzetno cenjene događaje.</p>
+                            <ul class="social_icons">
+
+                                <li><a class="fa fa-facebook" href="https://www.facebook.com/FMBSrbija/" title="Facebook" target="_blank"></a></li>
+
+
+                                <li><a class="fa fa-linkedin" href="https://www.linkedin.com/company/forum-media-srbija-do-o" title="LinkedIn" target="_blank"></a></li>
+                                <li><a class="fa fa-instagram" href="https://www.instagram.com/forum_media_rs/" title="Instagram" target="_blank"></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="main-heading left_text">
+                                <h2>Dodatni linkovi</h2>
+                            </div>
+                            <ul class="footer-menu">
+                                <li><a href="https://forum-media.rs/o-nama/" target="_blank"><i class="fa fa-angle-right"></i> O izdavaču Forum Media</a></li>
+                                <li><a href="https://forum-media.rs/kontakt/" target="_blank"><i class="fa fa-angle-right"></i> Kontakt</a></li>
+                                <li><a href="https://forum-media.rs/svi-proizvodi/" target="_blank"><i class="fa fa-angle-right"></i> Svi proizvodi</a></li>
+                                <li><a href="https://forum-media.rs/svi-prirucnici/" target="_blank"><i class="fa fa-angle-right"></i> Priručnici</a></li>
+                                <li><a href="https://forum-media.rs/sve-kontrolne-mape-i-zbirke/" target="_blank"><i class="fa fa-angle-right"></i> Kontrolne mape i zbirke</a></li>
+                                <li><a href="https://forum-media.rs/svi-seminari/" target="_blank"><i class="fa fa-angle-right"></i> Seminari</a></li>
+                                <li><a href="https://forum-media.rs/sve-intenzivne-obuke/" target="_blank"><i class="fa fa-angle-right"></i> Intenzivne obuke</a></li>
+                                <li><a href="https://forum-media.rs/sve-konferencije/" target="_blank"><i class="fa fa-angle-right"></i> Konferencije</a></li>
+                                <li><a href="https://forum-media.rs/inhouse-obuke/" target="_blank"><i class="fa fa-angle-right"></i> In-house obuke</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="main-heading left_text">
+                                <h2>Oblasti stručnosti</h2>
+                            </div>
+                            <ul class="footer-menu">
+                                <li><a href="https://forum-media.rs/trziste/radni-odnosi-i-hr-menadzment/" target="_blank"><i class="fa fa-angle-right"></i> Radni odnosi i HR menadžment</a></li>
+                                <li><a href="https://forum-media.rs/trziste/zzs-i-upravljanje-otpadom/" target="_blank"><i class="fa fa-angle-right"></i> ZŽS i upravljanje otpadom</a></li>
+                                <li><a href="https://forum-media.rs/trziste/javne-nabavke/" target="_blank"><i class="fa fa-angle-right"></i> Javne nabavke</a></li>
+                                <li><a href="https://forum-media.rs/trziste/tehnika/" target="_blank"><i class="fa fa-angle-right"></i> Tehnika</a></li>
+                                <li><a href="https://forum-media.rs/trziste/finansije-i-porezi/" target="_blank"><i class="fa fa-angle-right"></i> Finansije i porezi</a></li>
+                                <li><a href="https://forum-media.rs/trziste/menadzment-i-administracija/" target="_blank"><i class="fa fa-angle-right"></i> Menadžment i administracija</a></li>
+                                <li><a href="https://forum-media.rs/trziste/bezbednost-i-zdravlje-na-radu/it_techn_support.html" target="_blank"><i class="fa fa-angle-right"></i> Bezbednost i zdravlje na radu</a></li>
+                                <!-- <li><a href="https://forum-media.rs/trziste/informacione-tehnologije/" target="_blank"><i class="fa fa-angle-right"></i> Informacione tehnologije
+                                </a></li> -->
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="main-heading left_text">
+                                <h2>Kontakt</h2>
+                            </div>
+                            <p>
+                                Kralja Milutina 46-48<br>
+                                Beograd 11000<br>
+                                <span style="font-size:18px;"><a href="">
+    +381 11 329 2963<br />
+    +381 11 329 0922<br />
+    +381 11 630 8322<br />
+</a></span>
+                            </p>
+                            <div class="footer_mail-section">
+                                <form>
+                                    <fieldset>
+                                        <div class="field">
+                                            <input placeholder="Email" type="text">
+                                            <button class="button_custom"><i class="fa fa-envelope" aria-hidden="true"></i></button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cprt">
+                    <p>Dizajnirao: Apparation soft © Copyright Forum Media</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- js section -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- menu js -->
+    <script src="~/js/menumaker.js"></script>
+    <!-- wow animation -->
+    <script src="~/js/wow.js"></script>
+    <!-- custom js -->
+    <script src="~/js/custom.js"></script>
+    <!-- revolution js files -->
+    <script src="~/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <!-- map js -->
+    <script>
+        // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+        // Australia.
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: { lat: 40.645037, lng: -73.880224 },
+                styles: [
+                    {
+                        elementType: 'geometry',
+                        stylers: [{ color: '#fefefe' }]
+                    },
+                    {
+                        elementType: 'labels.icon',
+                        stylers: [{ visibility: 'off' }]
+                    },
+                    {
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#616161' }]
+                    },
+                    {
+                        elementType: 'labels.text.stroke',
+                        stylers: [{ color: '#f5f5f5' }]
+                    },
+                    {
+                        featureType: 'administrative.land_parcel',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#bdbdbd' }]
+                    },
+                    {
+                        featureType: 'poi',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#eeeeee' }]
+                    },
+                    {
+                        featureType: 'poi',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#757575' }]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#e5e5e5' }]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#9e9e9e' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#eee' }]
+                    },
+                    {
+                        featureType: 'road.arterial',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#3d3523' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#eee' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#616161' }]
+                    },
+                    {
+                        featureType: 'road.local',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#9e9e9e' }]
+                    },
+                    {
+                        featureType: 'transit.line',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#e5e5e5' }]
+                    },
+                    {
+                        featureType: 'transit.station',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#000' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#c8d7d4' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#b1a481' }]
+                    }
+                ]
+            });
+
+            var image = 'images/it_service/location_icon_map_cont.png';
+            var beachMarker = new google.maps.Marker({
+                position: { lat: 40.645037, lng: -73.880224 },
+                map: map,
+                icon: image
+            });
+        }
+    </script>
+    <!-- google map js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
+    <!-- end google map js -->
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

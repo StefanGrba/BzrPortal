@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.Propis>
+
+@{
+    ViewData["Title"] = "ListaPropisa";
+}
+<div class="container">
+    <h1>ListaPropisa</h1>
+    <p>
+        <a asp-action="SpisakRubrika" asp-controller="AdminRubrika" class="btn btn-warning">Rad sa rubrikama</a>
+        <a asp-action="ListaPodrubrika" asp-controller="AdminPodrubrika" class="btn btn-danger">Rad sa podrubrikama</a>
+        <a asp-action="ListVrstePropisa" asp-controller="AdminVrstaPropisa" class="btn btn-success">Rad sa vrstama propisa</a>
+    </p>
+    <p>
+        <a asp-action="CreatePropis" class="btn btn-primary">Kreiraj novi propis</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </th>
+                <th>
+                    @Html.DisplayName("Glasilo i datum")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naslov)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GlasiloIDatum)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditPropis", new { id = item.Id }) |
+                        @Html.ActionLink("Detalji", "DetailsPropis", new { id = item.Id }) |
+                        @Html.ActionLink("Dodaj tekst", "DodajTekst", new { id = item.Id }) |
+                        @Html.ActionLink("Isčitaj tekst", "IscitajTekst", new { id = item.Id }) |
+                        <a asp-controller="AdminPropis" asp-action="DeletePropis" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da želite da izbrišete @item.Naslov ?')">Briši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

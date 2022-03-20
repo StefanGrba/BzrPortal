@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.Vest>
+
+@{
+    ViewData["Title"] = "Lista vesti";
+}
+<div class="container">
+    <h1>Lista vesti</h1>
+
+    <p>
+        <a asp-action="CreateVest">Kreiraj novu vest</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Naslov)
+                </th>
+                <th>
+                    @Html.DisplayName("Datum objavljivanja")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Podnaslov)
+                </th>
+                <th>
+                    @Html.DisplayName("Sažetak")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Naslov)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DatumObjavljivanja)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Podnaslov)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sazetak)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditVest", new {  id=item.Id  }) |
+                        @Html.ActionLink("Detalji", "DetailsVest", new {  id=item.Id  }) |
+                       <a asp-action="DeleteVest" asp-controller="AdminVest" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da želite da izbrišete @item.Naslov ?')">Briši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

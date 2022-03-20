@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BZRForumMedia.Server.Models.TipDokumentacije>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="CreateTip">Kreiraj novi tip</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Naziv tipa")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImeTipa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Izmeni", "EditTip", new { id = item.Id }) |
+                        <a asp-action="DeleteTip" asp-controller="AdminTipDokumentacije" asp-route-id="@item.Id" onclick="return confirm('Da li ste sigurni da želite da izbrišete @item.ImeTipa ?')">Izbriši</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
